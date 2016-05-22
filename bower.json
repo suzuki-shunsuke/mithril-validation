@@ -1,0 +1,41 @@
+{
+  "name": "mithril-validation",
+  "version": "0.1.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "^2.2.3",
+    "underscore": "^1.8.3",
+    "mithril": "^0.2.4",
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0",
+    "validator-js": "^5.2.0"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "": [
+        "dist/jquery.js",
+        "dist/jquery.min.js",
+        "dist/jquery.min.map"
+      ]
+    },
+    "underscore": {
+      "": [
+        "underscore.js",
+        "underscore-min.js",
+        "underscore-min.map"
+      ]
+    },
+    "mithril": {
+      "": [
+        "mithril.min.js"
+      ]
+    }
+  }
+}
