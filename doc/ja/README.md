@@ -3,7 +3,9 @@
 Mithril用のバリデーションライブラリです。
 次のような特徴を持っています。
 
-* 一通りのバリデーションパターンを標準で持っている([validator.js](https://github.com/chriso/validator.js)に依存)
+* 単体では動かない。ルールセットをコアから切り離すことで、コアとルールセットを独立して開発出来るようにしている。特定のルールセットに依存しない
+  ただし、公式のルールセットを別のライブラリ mithril-validation-rule-set で提供しており、簡単にそれを利用できる
+* 公式のルールセット(別モジュール)には一通りのバリデーションパターンを標準で持っている([validator.js](https://github.com/chriso/validator.js)に依存)
 * カスタムのバリデーションパターンを追加できる
 * バリデーション対象としてモデルインスタンスまたはm.prop()オブジェクトを指定可能
 * 各バリデーションパターンのデフォルトパラメータを設定できる(同じ記述を繰り返さなくて済む)
@@ -25,14 +27,34 @@ $ npm install --save-dev mithril-validation
 $ bower install --save-dev mithril-validation
 ```
 
+公式のルールセット mithril-validation-rule-set もインストールするなら
+
+```
+$ npm install --save-dev mithril-validation mithril-validation-rule-set
+```
+
+```
+$ bower install --save-dev mithril-validation mithril-validation-rule-set
+```
+
+## ルールセットの組み込み方
+
+mithril-validationは単体では動かず、rule-setを組み込む必要がある。
+
+```javascript
+let mv = require('mithril-validation');
+mv.rule_set = require('mithril-validation-rule-set');
+```
+
 ## サンプルコード その1
 
 バリデーション対象がm.prop()オブジェクトの場合
 
 ```javascript
-let create_validator = require('mithril-validation').create_validator;
+let mv = require('mithril-validation');
+mv.rule_set = require('mithril-validation-rule-set');
 
-let NameValidator = create_validator({
+let NameValidator = mv.create_validator({
   rules: [{
     'type': 'required',
     'message': '必須です!'
@@ -92,7 +114,7 @@ class User {
   }
 }
 
-let UserValidator = create_validator({
+let UserValidator = mv.create_validator({
     // 各バリデーション項目のデフォルトパラメータを設定できる
     'required': {
       'message': 'Required!'
@@ -108,7 +130,7 @@ let UserValidator = create_validator({
       rules: ['required'],  // デフォルトパラメータを設定しておけば記述が簡潔になる
     },
     'age': {
-      rules: 'required',  // ルールが1つなら配列じゃなくてもよい
+      rules: ['required'],
     },
   }
 );
