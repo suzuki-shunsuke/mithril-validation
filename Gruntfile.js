@@ -22,11 +22,10 @@ module.exports = function(grunt) {
       options: {
         globals: ['chai'],
         timeout: 3000,
-        ui: 'tdd',
+        ui: 'bdd',
         reporter: 'tap'
       },
-
-      all: { src: [''] }
+      all: { src: ['test/cli/src/main.js'] }
     },
   });
   grunt.loadNpmTasks('grunt-bower-task');

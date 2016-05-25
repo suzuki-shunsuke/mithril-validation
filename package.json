@@ -4,8 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack",
-    "grunt": "grunt"
+    "grunt": "grunt",
+    "mocha": "mocha",
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
