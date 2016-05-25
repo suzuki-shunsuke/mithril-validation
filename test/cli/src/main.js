@@ -27,8 +27,18 @@ mocha.describe('mv.create_validator', () => {
     let value = 'ffffff';
     name(value);
     chai.expect(name_validator.validate()).to.be.false;
-    chai.expect(name_validator.result()).to.be.false;
     chai.expect(name_validator.message()).eql(`value: ${value}`);
     chai.expect(name_validator.validate(['required'])).to.be.true;
+  });
+  mocha.it('message is not required', () => {
+    let message = 'Required!';
+    let NameValidator = mv.create_validator({
+      rules: [{'type': 'required'},],
+    });
+    let name = m.prop('');
+    let name_validator = new NameValidator(name);
+    chai.expect(name_validator.validate()).to.be.false;
+    chai.expect(name_validator.result()).to.be.false;
+    chai.expect(name_validator.message()).to.be.undefined;
   });
 });
