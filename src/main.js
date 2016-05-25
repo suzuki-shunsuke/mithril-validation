@@ -1,23 +1,34 @@
-// let m = require('mithril');
+let m = require('mithril');
 
 let mv = {};
 
-function create_validator() {
-  let len = arguments.length;
-  if (len === 1) {
-    let args = arguments[0];
-    if (args.rules) {
-      if (args.rules.rules) {
-      
-      } else {
-      
-      }
-    } else {
-    
+function create_validator(args) {
+  const RULE_SET = this.rule_set;
+
+  class Validator {
+    constructor(prop) {
+      this.prop = prop;
+      this.result = m.prop();
     }
-  } else {
-  
+
+    validate() {
+      let rules = this.constructor.rules;
+      let len = rules.length;
+      let value = this.prop();
+      for (let i=0; i<len; i++) {
+        let rule = rules[i];
+        if (! RULE_SET[rule.type](value, rule.params)) {
+          this.result(false);
+          return false;
+        }
+      }
+      return true;
+    }
   }
+
+  Validator.rules = args.rules;
+
+  return Validator;
 }
 
 mv.create_validator = create_validator;
