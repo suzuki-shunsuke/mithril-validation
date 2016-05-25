@@ -22,6 +22,7 @@ function create_validator(args) {
           return false;
         }
       }
+      this.result(true);
       return true;
     }
   }

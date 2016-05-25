@@ -13,7 +13,9 @@ mocha.describe('mv.create_validator', () => {
     let name = m.prop('');
     let name_validator = new NameValidator(name);
     chai.expect(name_validator.validate()).to.be.false;
+    chai.expect(name_validator.result()).to.be.false;
     name('f');
     chai.expect(name_validator.validate()).to.be.true;
+    chai.expect(name_validator.result()).to.be.true;
   });
 });
