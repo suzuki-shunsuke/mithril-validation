@@ -9,6 +9,7 @@ function create_validator(args) {
     constructor(prop) {
       this.prop = prop;
       this.result = m.prop();
+      this.message = m.prop();
     }
 
     validate() {
@@ -19,10 +20,12 @@ function create_validator(args) {
         let rule = rules[i];
         if (! RULE_SET[rule.type](value, rule.params)) {
           this.result(false);
+          this.message(rule.message);
           return false;
         }
       }
       this.result(true);
+      this.message('');
       return true;
     }
   }
