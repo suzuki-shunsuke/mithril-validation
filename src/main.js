@@ -20,7 +20,11 @@ function create_validator(args) {
         let rule = rules[i];
         if (! RULE_SET[rule.type](value, rule.params)) {
           this.result(false);
-          this.message(rule.message);
+          if (typeof rule.message === 'function') {
+            this.message(rule.message(value, rule.params));
+          } else {
+            this.message(rule.message);
+          }
           return false;
         }
       }
