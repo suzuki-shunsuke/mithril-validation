@@ -12,12 +12,15 @@ function create_validator(args) {
       this.message = m.prop();
     }
 
-    validate() {
+    validate(types) {
       let rules = this.constructor.rules;
       let len = rules.length;
       let value = this.prop();
       for (let i=0; i<len; i++) {
         let rule = rules[i];
+        if (types && types.indexOf(rule.type) === -1) {
+          continue;
+        }
         if (! RULE_SET[rule.type](value, rule.params)) {
           this.result(false);
           if (typeof rule.message === 'function') {

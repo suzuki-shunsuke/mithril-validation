@@ -29,5 +29,6 @@ mocha.describe('mv.create_validator', () => {
     chai.expect(name_validator.validate()).to.be.false;
     chai.expect(name_validator.result()).to.be.false;
     chai.expect(name_validator.message()).eql(`value: ${value}`);
+    chai.expect(name_validator.validate(['required'])).to.be.true;
   });
 });
