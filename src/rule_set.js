@@ -1,3 +1,5 @@
+'use strict';
+
 let validator = require('validator');
 
 let rule_set = {};

@@ -1,3 +1,5 @@
+'use strict';
+
 let m = require('mithril');
 
 let mv = {};

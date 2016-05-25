@@ -1,3 +1,5 @@
+'use strict';
+
 let chai = require('chai');
 let mocha = require('mocha');
 let m = require('mithril');
