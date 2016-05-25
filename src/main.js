@@ -1,4 +1,4 @@
-let m = require('mithril');
+// let m = require('mithril');
 
 let mv = {};
 
@@ -20,7 +20,9 @@ function create_validator() {
   }
 }
 
+mv.create_validator = create_validator;
 
+/*
 mv.validator = args => {
   return value => {
     let rules = args.rules || [];
@@ -41,5 +43,6 @@ mv.validator = args => {
     return {result: true, value: value};
   };
 };
+*/
 
 module.exports = mv;
